@@ -1,0 +1,25 @@
+{
+    "manifest_version": 2,
+  
+    "name": "Wordpress Articles Extension",
+    "description": "An useful chrome extension to extract articles from wordpress article page",
+    "version": "0.0.1",
+  
+    "browser_action": {
+     "default_icon": "logo.png"
+    },
+
+    "permissions": [
+        "activeTab",
+        "tabs",
+        "https://systemscue.it/wp-admin",
+        "https://systemscue.it/",
+        "contextMenus",
+        "storage"
+     ],
+
+    "background": {
+        "scripts": ["jquery-3.4.1.min.js", "background.js"],
+        "persistent": true
+    }
+  }
