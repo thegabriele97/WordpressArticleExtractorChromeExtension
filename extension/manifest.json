@@ -6,7 +6,9 @@
     "version": "0.0.1",
   
     "browser_action": {
-     "default_icon": "logo.png"
+        "16": "wordpress16.png",
+        "32": "wordpress32.png",
+        "128": "wordpress1.png"
     },
 
     "permissions": [
