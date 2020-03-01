@@ -4,7 +4,7 @@ function createContextMenus() {
     chrome.contextMenus.create({
         title: "Extract Articles", 
         contexts: [ "page" ],
-        documentUrlPatterns: [ "*://*/wp-admin/edit.php?*" ],
+        documentUrlPatterns: [ "*://*/wp-admin/edit.php*" ],
         onclick: (e) => {
             console.log(e);
             
