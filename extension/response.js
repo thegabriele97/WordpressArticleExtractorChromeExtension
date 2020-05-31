@@ -7,6 +7,11 @@ function readData() {
     let dict = {};
     datas.forEach(article_compressed => {
         let article = JSON.parse(LZString.decompressFromEncodedURIComponent(article_compressed));
+        
+        if (article == null) {
+            continue;
+        }
+        
         if (dict[article.author] === undefined) {
             dict[article.author] = [];
         }
