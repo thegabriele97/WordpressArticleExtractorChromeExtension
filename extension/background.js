@@ -24,20 +24,27 @@ function createContextMenus() {
                         //let link = article_elem.getElementsByClassName('title')[0].getElementsByTagName('strong')[0].getElementsByTagName('a')[0].href
                         let date = article_elem.getElementsByClassName('date')[0].getElementsByTagName('span')[0].title.split(' ')[0];
                         let link = article_elem.getElementsByClassName('title')[0].getElementsByClassName('row-actions')[0].getElementsByTagName('span')[3].getElementsByTagName('a')[0].href;
-                        
+                        let title = article_elem.getElementsByClassName('title')[0].getElementsByTagName('strong')[0].getElementsByTagName('a')[0].innerText;
+
                         if (link.endsWith('&preview=true')) { //SKIP: it's a draft article
                             continue;
                         }
 
-                        let type = (author === "Redazione") ? "<b><i>### CHANGE HERE ###</b></i>" : "Originale";
-                        let str = date + " - " + author + " - " + type + " - " + link;
-
-                        datas[data_length - i - 1] = str;
+                        //let type = (author === "Redazione") ? "<b><i>### CHANGE HERE ###</b></i>" : "Originale";
+                        let toCheck = author === "Redazione";
+                        datas[i] = LZString.compressToEncodedURIComponent(JSON.stringify({
+                            "to_check": toCheck,
+                            "author": author,
+                            "date": date,
+                            "title": title,
+                            "url": link
+                        }));
+                        
+                        //let str = date + " - " + author + " - " + type + " - " + link;
+                        //datas[data_length - i - 1] = str;
                     }
 
-                    chrome.storage.sync.set({ "last_data": datas }, () => {
-                        chrome.tabs.create({ "url": "response.html" }, (tab) => {});
-                    });
+                    chrome.tabs.create({ "url": "response.html?content=" + LZString.compressToEncodedURIComponent(JSON.stringify(datas)) }, (tab) => {});
                 }
             }
             xhr.send();

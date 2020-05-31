@@ -21,7 +21,12 @@
      ],
 
     "background": {
-        "scripts": ["jquery-3.4.1.min.js", "background.js"],
+        "scripts": [
+            "jquery-3.4.1.min.js", 
+            "lz-string.min.js", 
+            "base64-string.js", 
+            "background.js"
+        ],
         "persistent": true
     }
   }
