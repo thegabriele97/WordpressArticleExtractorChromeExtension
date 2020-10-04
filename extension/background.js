@@ -22,7 +22,8 @@ function createContextMenus() {
 
                         let author = article_elem.getElementsByClassName('author')[0].getElementsByTagName('a')[0].text;
                         //let link = article_elem.getElementsByClassName('title')[0].getElementsByTagName('strong')[0].getElementsByTagName('a')[0].href
-                        let date = article_elem.getElementsByClassName('date')[0].getElementsByTagName('span')[0].title.split(' ')[0];
+                        console.log(article_elem.getElementsByClassName('date')[0].innerHTML.split('<br>'));
+                        let date = article_elem.getElementsByClassName('date')[0].innerHTML.split('<br>')[1].split(' ')[0];
                         let link = article_elem.getElementsByClassName('title')[0].getElementsByClassName('row-actions')[0].getElementsByTagName('span')[3].getElementsByTagName('a')[0].href;
                         let title = article_elem.getElementsByClassName('title')[0].getElementsByTagName('strong')[0].getElementsByTagName('a')[0].innerText;
 

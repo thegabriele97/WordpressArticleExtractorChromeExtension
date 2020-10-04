@@ -20,7 +20,7 @@ function readData() {
     });
 
     Object.keys(dict).forEach(author_key => {
-        document.getElementById('list').innerHTML += "<li>" + author_key + "<ul id='inner-" + author_key + "'></ul></li>";
+        document.getElementById('list').innerHTML += "<li>" + author_key + " (Count: " + dict[author_key].length + ") <ul id='inner-" + author_key + "'></ul></li>";
     
         dict[author_key] = dict[author_key].reverse();
         dict[author_key].forEach(element => {
