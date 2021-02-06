@@ -12,14 +12,22 @@ function readData() {
         }
 
         let article = JSON.parse(LZString.decompressFromEncodedURIComponent(article_compressed));
-        if (dict[article.author] === undefined) {
+        /*if (dict[article.author] === undefined) {
             dict[article.author] = [];
         }
 
-        dict[article.author].push(article);
+        dict[article.author].push(article);*/
+
+        if (article.status != "Pubblicato") {
+            return;
+        }
+
+        document.getElementById('list').innerHTML += "<tr><th>" + article.date + " </th><th> " + article.title + " </th><th> " + 
+                                                     "<a href='" +  article.url + "'>" + article.url + "</a>" + "</th></tr>";
+
     });
 
-    Object.keys(dict).forEach(author_key => {
+    /*Object.keys(dict).forEach(author_key => {
         document.getElementById('list').innerHTML += "<li>" + author_key + " (Count: " + dict[author_key].length + ") <ul id='inner-" + author_key + "'></ul></li>";
     
         dict[author_key] = dict[author_key].reverse();
@@ -28,7 +36,7 @@ function readData() {
             let type = (element.to_check) ? "<b><i>### CHANGE HERE ###</b></i>" : "Originale";
             document.getElementById('inner-' + author_key).innerHTML += "<li>" + date + " - " + type + " - " + element.title + "</li>";
         });
-    });
+    });*/
 }
 
 window.onload = () => {

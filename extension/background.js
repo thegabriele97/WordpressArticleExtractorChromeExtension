@@ -26,6 +26,7 @@ function createContextMenus() {
                         let date = article_elem.getElementsByClassName('date')[0].innerHTML.split('<br>')[1].split(' ')[0];
                         let link = article_elem.getElementsByClassName('title')[0].getElementsByClassName('row-actions')[0].getElementsByTagName('span')[3].getElementsByTagName('a')[0].href;
                         let title = article_elem.getElementsByClassName('title')[0].getElementsByTagName('strong')[0].getElementsByTagName('a')[0].innerText;
+                        let status = article_elem.getElementsByClassName('date')[0].innerHTML.split('<br>')[0];
 
                         if (link.endsWith('&preview=true')) { //SKIP: it's a draft article
                             continue;
@@ -38,7 +39,8 @@ function createContextMenus() {
                             "author": author,
                             "date": date,
                             "title": title,
-                            "url": link
+                            "url": link,
+                            "status": status
                         }));
                         
                         //let str = date + " - " + author + " - " + type + " - " + link;
