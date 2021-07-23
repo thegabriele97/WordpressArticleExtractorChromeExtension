@@ -30,6 +30,20 @@ function readData() {
 
     });
 
+    var months_count = new Map();
+    articles.forEach(article => {
+
+        let splitted = article.date.split('/'); 
+        let month = splitted[1] + "/" + splitted[2];
+        months_count.set(month, months_count.has(month) ? months_count.get(month) + 1 : 1);
+
+    });
+    
+    months_count.forEach((k, v) => {
+        document.getElementById('list-counts').innerHTML += "<tr><th> Month " + v + ":</th><th> " + k + "</th></tr>";
+    });
+
+
     /*Object.keys(dict).forEach(author_key => {
         document.getElementById('list').innerHTML += "<li>" + author_key + " (Count: " + dict[author_key].length + ") <ul id='inner-" + author_key + "'></ul></li>";
     
