@@ -26,7 +26,8 @@ function readData() {
         }
 
         document.getElementById('list').innerHTML += "<tr><th>" + article.date + " </th><th> " + article.title + " </th><th> " + 
-                                                     "<a href='" +  article.url + "'>" + article.url + "</a>" + "</th></tr>";
+                                                     "<a href='" +  article.url + "'>" + article.url + "</a>" + "</th><th>" + 
+                                                     "<button name='cpybtn'>Copy!</button></th></tr>";
 
     });
 
@@ -73,6 +74,23 @@ function get_csv() {
 }
 
 window.onload = () => {
+
     readData();
     document.getElementById('btn_csv').onclick = get_csv;
+
+    document.getElementById('msg').onkeyup = (e) => {
+        for (let i = 0; i < document.getElementById('list').children.length; i++) {
+            let aitem = document.getElementById('list').children[i].children[0].children[2];
+
+            aitem.innerHTML = "<a href='" + aitem.children[0].href + "'>" + document.getElementById('msg').value + aitem.children[0] + "</a>"
+        }
+    };
+
+    for (let i = 0; i < document.getElementsByName('cpybtn').length; i++) {
+        document.getElementsByName('cpybtn')[i].onclick = (e) => {
+            let text = document.getElementById('list').children[i].children[0].children[3].children[0].parentElement.parentElement.children[2].children[0].innerText;
+            navigator.clipboard.write([new ClipboardItem({ 'text/plain': new Blob([text], { type: 'text/plain' }) })]);
+        }
+    }
+
 };
